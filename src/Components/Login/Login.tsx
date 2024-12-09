@@ -1,6 +1,6 @@
 import React from 'react'
 import LoginLeftPart from './LoginLeftPart'
-import LoginForm from './LoginForm'
+import LoginForm from './LoginIds'
 
 function Login() {
   return (
