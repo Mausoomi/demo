@@ -12,7 +12,8 @@ export default function ProviderLayout({
   return (
     <div>
       <Provider store={store}>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        {/* <LayoutWrapper>{children}</LayoutWrapper> */}
+     {children}
       </Provider>
     </div>
   );
