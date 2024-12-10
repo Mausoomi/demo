@@ -5,7 +5,7 @@ import LoginPic from "../../../public/loginPic.png"
 
 function LoginLeftPart() {
   return (
-    <div className="bg-[#0F67B1] w-[59%]  flex items-center justify-center py-4">
+    <div className="bg-[#0F67B1] w-[59%]  flex items-center justify-center py-4  h-[100vh]">
       <div className="flex flex-col items-center justify-center gap-10">
         <div className="flex items-center justify-center gap-3 text-[20px] text-[#F5F5F5] relative w-full max-w-xs">
           <Image
