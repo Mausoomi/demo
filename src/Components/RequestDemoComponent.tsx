@@ -13,7 +13,7 @@ function RequestDemoComponent() {
         </p>
         <button
           type="button"
-          onClick={() => router.push("/RequestDemo")}
+          onClick={() => router.push("/RequestDemo/stepOne")}
           className="text-[#0F67B1] text-sm font-medium"
         >
           Request a free demo

@@ -38,7 +38,7 @@ function LoginPage() {
           Enter your email address.
         </p>
 
-        <div className="w-full max-w-xs">
+        <div className="w-full max-w-xs ">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-[#404040] text-sm font-medium mb-2">
