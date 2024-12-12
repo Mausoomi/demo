@@ -4,7 +4,7 @@ import LoginForm from './LoginIds'
 
 function Login() {
   return (
-    <div className="flex h-[100vh]  ">
+    <div className="flex   ">
       <LoginLeftPart />
       <LoginForm />
     </div>

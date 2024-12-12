@@ -10,10 +10,10 @@ export default function ProviderLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="font-poppins">
       <Provider store={store}>
         {/* <LayoutWrapper>{children}</LayoutWrapper> */}
-     {children}
+        {children}
       </Provider>
     </div>
   );

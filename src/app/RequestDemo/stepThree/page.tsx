@@ -11,49 +11,39 @@ import completedPg from "../../../../public/icons/completedPg.png";
 import arrowDown from "../../../../public/icons/Arrow-down.png";
 
 interface FormData {
-  PhoneCode: number | null;
-  PhoneNum: number | null;
-  Email: string;
-  Country: string;
+  Company: string;
+  Employees: string;
+  Companylanguage: string;
 }
 
 function page() {
   const router = useRouter();
+  const [serviceAgrmnt, setServiceAgrmnt] = useState<boolean>(false);
+  const [marketingCheck , setMarketingCheck]= useState<boolean>(false)
 
   const [formData, setFormData] = useState<FormData>({
-    PhoneCode: null,
-    PhoneNum: null,
-    Email: "",
-    Country: "",
+    Company: "",
+    Employees: "",
+    Companylanguage: "",
   });
 
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
 
-    const updatedFormData = {
-      ...formData,
-      [name]:
-        name === "PhoneCode" || name === "PhoneNum"
-          ? Number(value) || null
-          : value,
-    };
+    const updatedFormData = { ...formData, [name]: value };
+    setFormData(updatedFormData);
 
-    setFormData(updatedFormData)
+    // Check if all fields are filled and email is valid
 
     if (
-      updatedFormData.PhoneNum !== null &&
-      updatedFormData.Email &&
-      updatedFormData.Country &&
-      validateEmail(updatedFormData.Email)
+      updatedFormData.Company &&
+      updatedFormData.Employees &&
+      updatedFormData.Companylanguage &&
+      serviceAgrmnt && marketingCheck
     ) {
       setIsFormValid(true);
     } else {
@@ -64,19 +54,19 @@ function page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form Submitted: ", formData);
-    router.push("/RequestDemo/stepThree");
+    router.push("/RequestDemo/RequestSucess");
   };
 
   const handleBackClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    router.push("/RequestDemo/stepOne");
+    router.push("/RequestDemo/stepTwo");
   };
 
   console.log(isFormValid);
   return (
-    <div className="flex">
+    <div className="flex ">
       <LoginLeftPart />
-      <div className="flex flex-col items-center justify-center w-[41%] ">
+      <div className="flex flex-col items-center justify-center w-[41%] py-7 ">
         <div className="flex flex-col items-center justify-center gap-3 w-[343px]">
           <p className="text-[#404040] text-[32px] font-medium">
             Plan my Free Demo
@@ -93,11 +83,11 @@ function page() {
                   <p className="text-[#0F67B1] font-normal text-sm">step1</p>
                 </div>
                 <div className=" flex flex-col gap-1 items-center  ">
-                  <Image src={currentPg} alt="step1" width={20} height={20} />
+                  <Image src={completedPg} alt="step1" width={20} height={20} />
                   <p className="text-[#0F67B1] font-normal text-sm">step2</p>
                 </div>
                 <div className=" flex flex-col gap-1 items-center  ">
-                  <Image src={nextPg} alt="step1" width={20} height={20} />
+                  <Image src={currentPg} alt="step1" width={20} height={20} />
                   <p className="text-[#0F67B1] font-normal text-sm">step3</p>
                 </div>
               </div>
@@ -108,37 +98,22 @@ function page() {
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-[#404040] text-sm font-medium mb-2">
-                  Phone Numbe
+                  Company
                 </label>
                 <div className=" relative bg-white">
-                  <div
-                    className={`shadow appearance-none border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline
-                 ${formData.PhoneNum && "bg-[#EDFAF0]"}
-                     border-[#D0D0D0] text-[#9E9E9E] text-sm`}
-                  >
-                    <select
-                      name="PhoneCode"
-                      value={formData.PhoneCode ?? ""}
-                      onChange={handleChange}
-                      className="border-r border-[#9E9E9E] focus:outline-none  bg-transparent text-[#404040] text-sm font-normal"
-                    >
-                      <option value="+31">+31</option>
-                      <option value="+1">+1</option>
-                      <option value="+44">+44</option>
-                      <option value="+91">+91</option>
-                    </select>
-                    <input
-                      type="number"
-                      placeholder="Enter phone number"
-                      name="PhoneNum"
-                      value={formData.PhoneNum ?? ""}
-                      onChange={handleChange}
-                      className="pl-2  focus:outline-none focus:shadow-outline  bg-transparent text-[#404040] text-sm font-normal"
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    placeholder="Enter Company name"
+                    name="Company"
+                    value={formData.Company}
+                    onChange={handleChange}
+                    className={`shadow appearance-none text-[#404040] text-sm font-normal border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline
+                 ${formData.Company && "bg-[#EDFAF0]"}
+                     border-[#D0D0D0] `}
+                  />
 
                   <div className=" absolute top-0 right-0 h-full flex items-center pr-2">
-                    {formData.PhoneNum && (
+                    {formData.Company && (
                       <Image
                         src={correctIcon}
                         alt="icon"
@@ -151,55 +126,27 @@ function page() {
               </div>
               <div className="mb-4">
                 <label className="block text-[#404040] text-sm font-medium mb-2">
-                  Email
-                </label>
-                <div className=" relative">
-                  <input
-                    className={`shadow appearance-none border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline ${
-                      formData.Email &&
-                      validateEmail(formData.Email) &&
-                      "bg-[#EDFAF0]"
-                    } border-[#D0D0D0]`}
-                    type="text"
-                    name="Email"
-                    value={formData.Email}
-                    onChange={handleChange}
-                  />
-                  <div className=" absolute top-0 right-0 h-full flex items-center pr-2">
-                    {formData.Email && validateEmail(formData.Email) && (
-                      <Image
-                        src={correctIcon}
-                        alt="icon"
-                        width={20}
-                        height={20}
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="mb-4">
-                <label className="block text-[#404040] text-sm font-medium mb-2">
-                  Country/Region
+                  Employees
                 </label>
                 <div className=" relative">
                   <select
-                    name="Country"
-                    value={formData.Country}
+                    name="Employees"
+                    value={formData.Employees}
                     onChange={handleChange}
-                    className={`shadow text-[#404040] text-sm font-normal appearance-none border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline ${
-                      formData.Country && "bg-[#EDFAF0]"
-                    } border-[#D0D0D0] `}
+                    className={`shadow appearance-none border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline ${
+                      formData.Employees && "bg-[#EDFAF0]"
+                    } border-[#D0D0D0]`}
                   >
                     <option value="" disabled>
-                      Select your Country/Region
+                      Select the amount of employees
                     </option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>
+                    <option value="1-10 employees">1-10 employees</option>
+                    <option value="10-50 employees">10-50 employees</option>
+                    <option value="50-100 employees">50-100 employees</option>
+                    <option value="More">More</option>
                   </select>
                   <div className=" absolute top-0 right-0 h-full flex items-center pr-2">
-                    {formData.Country ? (
+                    {formData.Employees ? (
                       <Image
                         src={correctIcon}
                         alt="icon"
@@ -217,8 +164,79 @@ function page() {
                   </div>
                 </div>
               </div>
+              <div className="mb-4">
+                <label className="block text-[#404040] text-sm font-medium mb-2">
+                  Employees
+                </label>
+                <div className=" relative">
+                  <select
+                    name="Companylanguage"
+                    value={formData.Companylanguage}
+                    onChange={handleChange}
+                    className={`shadow appearance-none border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline ${
+                      formData.Companylanguage && "bg-[#EDFAF0]"
+                    } border-[#D0D0D0]`}
+                  >
+                    <option value="" disabled>
+                      Company language
+                    </option>
+                    <option value="1-10 employees">English</option>
+                    <option value="10-50 employees">Dutch</option>
+                  </select>
+                  <div className=" absolute top-0 right-0 h-full flex items-center pr-2">
+                    {formData.Companylanguage ? (
+                      <Image
+                        src={correctIcon}
+                        alt="icon"
+                        width={20}
+                        height={20}
+                      />
+                    ) : (
+                      <Image
+                        src={arrowDown}
+                        alt="icon"
+                        width={20}
+                        height={20}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-5 items-start">
+                <div className="flex gap-2">
+                  <input type="checkbox" onClick={()=>setServiceAgrmnt(true)} />
+                  <p className="text-[#404040] text-sm font-normal">
+                    I agree to the{" "}
+                    <span className="text-[#0F67B1] cursor-pointer">
+                      Main Services Agreement.
+                    </span>
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <input type="checkbox" onClick={()=>setMarketingCheck(true)}/>
+                  <p className="text-[#404040] text-sm font-normal ">
+                    Yes, I want to receive marketing communications about
+                    [organization]'s products, services, and events. I can
+                    unsubscribe at any time.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 items-start">
+                  <p className="text-[#616161] text-[12px] font-normal">
+                    Your free demo may be provisioned on or migrated to
+                    Hyperforce, [company name] public cloud infrastructure.
+                  </p>
+                  <p className="text-[#616161] text-[12px] font-normal">
+                    By registering, you agree to the processing of your personal
+                    data by [company name] as described in the
+                    <span className="text-[#0F67B1] cursor-pointer">
+                      Privacy Statement.
+                    </span>
+                     
+                  </p>
+                </div>
+              </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 pt-5">
                 <button
                   onClick={handleBackClick}
                   className="text-[#0F67B1] border-[#0F67B1] border  border-solid rounded-[50px] py-4 px-9 "

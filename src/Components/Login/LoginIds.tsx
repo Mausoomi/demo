@@ -93,7 +93,12 @@ function LoginIds() {
         <p className="text-[#757575] text-sm font-normal">
           Don't you have an account?
         </p>
-        <button className="text-[#0F67B1] text-sm font-medium">Sign Up</button>
+        <button
+          onClick={() => router.push("/SignInPage/CreatePassword")}
+          className="text-[#0F67B1] text-sm font-medium"
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   );

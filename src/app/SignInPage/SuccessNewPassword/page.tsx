@@ -1,9 +1,12 @@
+"use client";
 import LoginLeftPart from "@/Components/Login/LoginLeftPart";
 import React from "react";
 import correctIcon from "../../../../public/icons/check-circle.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 function page() {
+  const router = useRouter();
   return (
     <div>
       <div className="flex">
@@ -23,6 +26,7 @@ function page() {
             <button
               type="submit"
               className={`w-[315px] text-[#FFFFFF] bg-[#0F67B1] text-center rounded-[50px] py-4 px-5`}
+              onClick={() => router.push("/LoginPage")}
             >
               Login
             </button>
