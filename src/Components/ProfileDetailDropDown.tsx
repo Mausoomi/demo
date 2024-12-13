@@ -1,30 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import logo from "../../public/logo.png";
-import { IoIosArrowBack } from "react-icons/io";
+import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { RiSearchLine } from "react-icons/ri";
-import chat from "../../public/icons/chat.png";
-import bell from "../../public/icons/bell.png";
-import star from "../../public/icons/star.png";
 import profile from "../../public/image 1.png";
 import maximizer from "../../public/icons/maximize-4.png";
-import { FaPlus } from "react-icons/fa6";
-import dashboard from "../../public/icons/view-grid.png";
-import Groups from "../../public/icons/user-group.png";
 import Individuals from "../../public/icons/user.png";
-import Hotspots from "../../public/icons/status-online.png";
-import AdvancedSearch from "../../public/icons/document-search.svg";
 import Language from "../../public/icons/globe-alt.png";
 import Setting from "../../public/icons/cog.png";
 import logOut from "../../public/icons/logout.png";
-import menu from "../../public/icons/menu.png";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../Store/store";
 import { toggleTopMenu, toggleBothMenu } from "../Store/Reducers/settingSlice";
 import { toggleSidebar } from "../Store/Reducers/sidebarSlice";
+import ToggleSwitch from "./ToggleSwitch";
+
 type DropDownItem = {
   icon: React.ReactNode;
   item: string;
@@ -32,18 +22,17 @@ type DropDownItem = {
 };
 
 function ProfileDetailDropDownComponent() {
-     const [allDropDown, setAllDropDown] = useState(false);
-       const [ProfileDropDown, setProfileDropDown] = useState(false);
-       const isTopMenuVisible = useSelector(
-         (state: RootState) => state.setting.isTopMenuVisible
-       );
-       const [isFullscreen, setIsFullscreen] = useState(false);
-     
-       const sidebarState = useSelector(
-         (state: RootState) => state.sidebar.sidebarState
-       );
-       const dispatch = useDispatch();
-     
+  const [ProfileDropDown, setProfileDropDown] = useState(false);
+  const isTopMenuVisible = useSelector(
+    (state: RootState) => state.setting.isTopMenuVisible
+  );
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const sidebarState = useSelector(
+    (state: RootState) => state.sidebar.sidebarState
+  );
+  const dispatch = useDispatch();
+
   const ProfileDetailDropDown: DropDownItem[] = [
     {
       item: "Account",
@@ -62,31 +51,31 @@ function ProfileDetailDropDownComponent() {
     },
   ];
 
-    const handleProfileDropDown = () => {
-      setProfileDropDown(!ProfileDropDown);
-    };
+  const handleProfileDropDown = () => {
+    setProfileDropDown(!ProfileDropDown);
+  };
 
-   const toggleFullscreen = () => {
-     if (!document.fullscreenElement) {
-       document.documentElement
-         .requestFullscreen()
-         .then(() => {
-           setIsFullscreen(true);
-         })
-         .catch((err) => {
-           console.error(`Failed to enter fullscreen mode: ${err.message}`);
-         });
-     } else {
-       document
-         .exitFullscreen()
-         .then(() => {
-           setIsFullscreen(false);
-         })
-         .catch((err) => {
-           console.error(`Failed to exit fullscreen mode: ${err.message}`);
-         });
-     }
-   };
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement
+        .requestFullscreen()
+        .then(() => {
+          setIsFullscreen(true);
+        })
+        .catch((err) => {
+          console.error(`Failed to enter fullscreen mode: ${err.message}`);
+        });
+    } else {
+      document
+        .exitFullscreen()
+        .then(() => {
+          setIsFullscreen(false);
+        })
+        .catch((err) => {
+          console.error(`Failed to exit fullscreen mode: ${err.message}`);
+        });
+    }
+  };
   return (
     <div>
       <div className="relative inline-block text-left  ">
@@ -120,6 +109,9 @@ function ProfileDetailDropDownComponent() {
 
             <li className="flex px-4 py-3 text-sm text-gray-700 gap-3">
               <p>Dark / Light modus</p>
+              <div>
+                <ToggleSwitch/>
+              </div>
             </li>
 
             <button onClick={toggleFullscreen} className="w-full">
