@@ -3,12 +3,12 @@ import LoginLeftPart from "@/Components/Login/LoginLeftPart";
 import React, { useState } from "react";
 import correctIcon from "../../../../../public/icons/mail-open.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
-function page() {
-  const router = useRouter();
+function SendOtp() {
+  // const router = useRouter();
    const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
-   const [message, setMessage] = useState("");
+   const [message, setMessage] = useState<string>("");
 
    const handleChange = (index: number, value: string) => {
      if (isNaN(Number(value))) return; // Only allow numbers
@@ -38,7 +38,7 @@ function page() {
      const enteredOtp = otp.join("");
      if (enteredOtp.length === otp.length) {
        // Verify OTP here (e.g., call an API)
-       setMessage(`OTP Entered: ${enteredOtp}`);
+      console.log(`OTP Entered: ${enteredOtp}`);
      } else {
        setMessage("Please fill all OTP fields");
      }
@@ -79,7 +79,7 @@ function page() {
               <div className="py-5">
                 <p className="text-[#0F67B1] text-sm font-medium text-center">
                   <span className="text-[#757575] font-normal">
-                    Doesn't accept code?
+                    Doesn&apos;t accept code?
                   </span>
                   Send again
                 </p>
@@ -94,7 +94,7 @@ function page() {
               >
                 Continue
               </button>
-              {/* {message && <p className="mt-4 text-gray-700">{message}</p>} */}
+              {message? <p className="mt-4 text-[#CB3A31]  text-center">{message}</p>:""}
             </div>
           </div>
         </div>
@@ -103,4 +103,4 @@ function page() {
   );
 }
 
-export default page;
+export default SendOtp;

@@ -15,9 +15,9 @@ function CreatePassword() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassowrd, setShowConfirmPassword] =
     useState<boolean>(false);
-  const [allconditionMet, setAllConsitionMet] = useState<boolean>(false);
+  //const [allconditionMet, setAllConsitionMet] = useState<boolean>(false);
   const [hasStartedTyping, setHasStartedTyping] = useState<boolean>(false);
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  //const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [passwordMatch, setPasswordMatch] = useState<boolean>(false);
   const [hasStartedTypingConfirmpw, setHasStartedTypingConfirmpw] =
     useState<boolean>(false);
@@ -45,7 +45,7 @@ function CreatePassword() {
     setConditions(isValid);
 
     if (conditions.minChars && conditions.twoCaps && conditions.numOrSymbol) {
-      setAllConsitionMet(true);
+     // setAllConsitionMet(true);
       setHasStartedTyping(false);
     }
   };
@@ -68,7 +68,7 @@ function CreatePassword() {
 
   const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const enteredPassword = e.target.value;
-    setConfirmPassword(enteredPassword);
+    //setConfirmPassword(enteredPassword);
 
     if (!hasStartedTypingConfirmpw) setHasStartedTypingConfirmpw(true);
     if (password === enteredPassword) {

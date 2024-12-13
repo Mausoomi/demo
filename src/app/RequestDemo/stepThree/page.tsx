@@ -3,7 +3,7 @@
 import LoginLeftPart from "@/Components/Login/LoginLeftPart";
 import React, { useState } from "react";
 import currentPg from "../../../../public/icons/currentstep.png";
-import nextPg from "../../../../public/icons/nextstep.png";
+
 import Image from "next/image";
 import correctIcon from "../../../../public/icons/check-circle.png";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ interface FormData {
   Companylanguage: string;
 }
 
-function page() {
+function StepThree() {
   const router = useRouter();
   const [serviceAgrmnt, setServiceAgrmnt] = useState<boolean>(false);
   const [marketingCheck , setMarketingCheck]= useState<boolean>(false)
@@ -72,7 +72,8 @@ function page() {
             Plan my Free Demo
           </p>
           <p className="text-[#757575] text-sm font-normal text-center">
-            Answer 9 quick questions, and we’ll set you up with your free demo!
+            Answer 9 quick questions, and we&apos;ll set you up with your free
+            demo!
           </p>
           <div className="pt-4">
             <div className="relative">
@@ -204,7 +205,10 @@ function page() {
               </div>
               <div className="flex flex-col gap-5 items-start">
                 <div className="flex gap-2">
-                  <input type="checkbox" onClick={()=>setServiceAgrmnt(true)} />
+                  <input
+                    type="checkbox"
+                    onClick={() => setServiceAgrmnt(true)}
+                  />
                   <p className="text-[#404040] text-sm font-normal">
                     I agree to the{" "}
                     <span className="text-[#0F67B1] cursor-pointer">
@@ -213,7 +217,10 @@ function page() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <input type="checkbox" onClick={()=>setMarketingCheck(true)}/>
+                  <input
+                    type="checkbox"
+                    onClick={() => setMarketingCheck(true)}
+                  />
                   <p className="text-[#404040] text-sm font-normal ">
                     Yes, I want to receive marketing communications about
                     [organization]'s products, services, and events. I can
@@ -263,4 +270,4 @@ function page() {
   );
 }
 
-export default page;
+export default StepThree;

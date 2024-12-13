@@ -3,10 +3,10 @@ import LoginLeftPart from "@/Components/Login/LoginLeftPart";
 import React from "react";
 import correctIcon from "../../../../../public/icons/mail-open.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 
-function page() {
-  const router = useRouter();
+function VerificationEmail() {
+  //const router = useRouter();
   return (
     <div>
       <div className="flex">
@@ -30,4 +30,4 @@ function page() {
   );
 }
 
-export default page;
+export default VerificationEmail;

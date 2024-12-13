@@ -17,7 +17,7 @@ interface FormData {
   Country: string;
 }
 
-function page() {
+function StepTwo() {
   const router = useRouter();
 
   const [formData, setFormData] = useState<FormData>({
@@ -245,4 +245,4 @@ function page() {
   );
 }
 
-export default page;
+export default StepTwo;

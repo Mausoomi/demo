@@ -8,7 +8,7 @@ import Image from "next/image";
 import correctIcon from "../../../../public/icons/check-circle.png";
 import { useRouter } from "next/navigation";
 
-function page() {
+function StepOne() {
     const router = useRouter();
 
     const [formData, setFormData] = useState({
@@ -171,4 +171,4 @@ function page() {
   );
 }
 
-export default page;
+export default StepOne;
