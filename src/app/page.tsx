@@ -5,7 +5,7 @@ import Login from "../Components/Login/Login"
 
 export default function Home() {
   return (
-    // <div className=" bg-white rounded-xl  p-4 p-[10px]">
+    // <div className=" bg-white rounded-xl  p-[10px]">
     //   <TableHead />
     //   <GroupTable />
 

@@ -1,11 +1,9 @@
 "use client";
 
-
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/store";
-
 import TopMenuBar from "./TopMenuBar";
 
 export default function LayoutWrapper({
@@ -13,16 +11,14 @@ export default function LayoutWrapper({
 }: {
   children: React.ReactNode;
 }) {
- 
-    // const dispatch = useDispatch();
-    const sidebarState = useSelector(
-      (state: RootState) => state.sidebar.sidebarState
-    );
+  // const dispatch = useDispatch();
+  const sidebarState = useSelector(
+    (state: RootState) => state.sidebar.sidebarState
+  );
 
   return (
     <div>
-      <NavBar
-      />
+      <NavBar />
       <div className="flex">
         {sidebarState !== "hidden" && (
           <div

@@ -25,6 +25,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../Store/store";
 import { toggleTopMenu, toggleBothMenu } from "../Store/Reducers/settingSlice";
 import { toggleSidebar } from "../Store/Reducers/sidebarSlice";
+import ProfileDetailDropDownComponent from "./ProfileDetailDropDown";
 
 type DropDownItem = {
   icon: React.ReactNode;
@@ -232,7 +233,7 @@ function NavBar() {
               />
             </div>
 
-            <div className="relative inline-block text-left  ">
+            {/* <div className="relative inline-block text-left  ">
               <div>
                 <button
                   type="button"
@@ -357,6 +358,9 @@ function NavBar() {
               ) : (
                 ""
               )}
+            </div> */}
+            <div>
+              <ProfileDetailDropDownComponent />
             </div>
           </div>
         </div>

@@ -3,7 +3,6 @@
 import LoginLeftPart from "@/Components/Login/LoginLeftPart";
 import React, { useState } from "react";
 import currentPg from "../../../../public/icons/currentstep.png";
-
 import Image from "next/image";
 import correctIcon from "../../../../public/icons/check-circle.png";
 import { useRouter } from "next/navigation";

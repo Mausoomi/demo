@@ -38,6 +38,8 @@ function EnterPassword() {
 
     if (password === dummyPassword) {
       console.log("Form submitted successfully with password:", password);
+      router.push("/DashBoard");
+
     } else {
       setError("Incorrect password. Please try again.");
     }
