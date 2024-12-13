@@ -223,7 +223,7 @@ function StepThree() {
                   />
                   <p className="text-[#404040] text-sm font-normal ">
                     Yes, I want to receive marketing communications about
-                    [organization]'s products, services, and events. I can
+                    [organization]&apos;s products, services, and events. I can
                     unsubscribe at any time.
                   </p>
                 </div>
