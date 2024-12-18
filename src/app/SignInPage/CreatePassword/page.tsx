@@ -23,8 +23,10 @@ function CreatePassword() {
     useState<boolean>(false);
   const [conditions, setConditions] = useState({
     minChars: false,
-    twoCaps: false,
-    numOrSymbol: false,
+    lowercase: false,
+    uppercase: false,
+    number: false,
+    symbol: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,16 +38,23 @@ function CreatePassword() {
 
     // Update conditions
     const isValid = {
-      //minChars: enteredPassword.length >= 8,
-      minChars: enteredPassword.length + 1 >= 8,
-      twoCaps: (enteredPassword.match(/[A-Z]/g) || []).length >= 2,
-      numOrSymbol: /[\d!@#$%^&*(),.?":{}|<>]/.test(enteredPassword),
+      minChars: enteredPassword.length >= 8,
+      lowercase: /[a-z]/.test(enteredPassword),
+      uppercase: /[A-Z]/.test(enteredPassword),
+      number: /[0-9]/.test(enteredPassword),
+      symbol: /[!#^&*]/.test(enteredPassword),
     };
 
     setConditions(isValid);
 
-    if (conditions.minChars && conditions.twoCaps && conditions.numOrSymbol) {
-     // setAllConsitionMet(true);
+    if (
+      conditions.minChars &&
+      conditions.lowercase &&
+      conditions.uppercase &&
+      conditions.number &&
+      conditions.symbol
+    ) {
+      // setAllConsitionMet(true);
       setHasStartedTyping(false);
     }
   };
@@ -104,9 +113,7 @@ function CreatePassword() {
                   className={`shadow appearance-none border-[1px] rounded-[8px] w-full py-2 px-3 focus:outline-none focus:shadow-outline ${
                     hasStartedTyping
                       ? "border-[#CB3A31]"
-                      : conditions.minChars &&
-                        conditions.numOrSymbol &&
-                        conditions.twoCaps
+                      : Object.values(conditions).every(Boolean)
                       ? "bg-[#EDFAF0]  border-[#43936C]"
                       : ""
                   } `}
@@ -145,29 +152,57 @@ function CreatePassword() {
                 <li className="flex items-center gap-2">
                   <GiPlainCircle
                     className={`text-[6px] font-medium ${getConditionTextColor(
-                      conditions.twoCaps
+                      conditions.lowercase
                     )}`}
                   />
                   <p
                     className={`text-[12px] font-medium ${getConditionTextColor(
-                      conditions.twoCaps
+                      conditions.lowercase
                     )}`}
                   >
-                    Minimum 2 capital letters.
+                    Lowercase letters (a-z)
                   </p>
                 </li>
                 <li className="flex items-center gap-2">
                   <GiPlainCircle
                     className={`text-[6px] font-medium ${getConditionTextColor(
-                      conditions.numOrSymbol
+                      conditions.uppercase
                     )}`}
                   />
                   <p
                     className={`text-[12px] font-medium ${getConditionTextColor(
-                      conditions.numOrSymbol
+                      conditions.uppercase
                     )}`}
                   >
-                    Contains a number or a symbol.
+                    Uppercase letters (A-Z)
+                  </p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <GiPlainCircle
+                    className={`text-[6px] font-medium ${getConditionTextColor(
+                      conditions.number
+                    )}`}
+                  />
+                  <p
+                    className={`text-[12px] font-medium ${getConditionTextColor(
+                      conditions.number
+                    )}`}
+                  >
+                    Numbers (0-9)
+                  </p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <GiPlainCircle
+                    className={`text-[6px] font-medium ${getConditionTextColor(
+                      conditions.symbol
+                    )}`}
+                  />
+                  <p
+                    className={`text-[12px] font-medium ${getConditionTextColor(
+                      conditions.symbol
+                    )}`}
+                  >
+                    Symbols (!#^&*)
                   </p>
                 </li>
               </ul>

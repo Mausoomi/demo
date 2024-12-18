@@ -13,7 +13,7 @@ function EnterPassword() {
   const [error, setError] = useState<string>("");
   const [successMsg, setSuccessMsg] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
- const router = useRouter();
+  const router = useRouter();
   const dummyPassword = "123456";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,6 @@ function EnterPassword() {
     if (password === dummyPassword) {
       console.log("Form submitted successfully with password:", password);
       router.push("/DashBoard");
-
     } else {
       setError("Incorrect password. Please try again.");
     }
@@ -108,13 +107,25 @@ function EnterPassword() {
                   <li className="flex items-center justify-start gap-2">
                     <div className="h-[6px] w-[6px] rounded-full bg-[#43936C]"></div>
                     <p className="text-[12px] text-[#43936C] font-medium">
-                      First capital letter
+                      Lowercase letters (a-z)
                     </p>
                   </li>
                   <li className="flex items-center justify-start gap-2">
                     <div className="h-[6px] w-[6px] rounded-full bg-[#43936C]"></div>
                     <p className="text-[12px] text-[#43936C] font-medium">
-                      Contains a numbers or symbols.
+                      Uppercase letters (A-Z)
+                    </p>
+                  </li>
+                  <li className="flex items-center justify-start gap-2">
+                    <div className="h-[6px] w-[6px] rounded-full bg-[#43936C]"></div>
+                    <p className="text-[12px] text-[#43936C] font-medium">
+                      Numbers (0-9)
+                    </p>
+                  </li>
+                  <li className="flex items-center justify-start gap-2">
+                    <div className="h-[6px] w-[6px] rounded-full bg-[#43936C]"></div>
+                    <p className="text-[12px] text-[#43936C] font-medium">
+                      Symbols (!#^&*)
                     </p>
                   </li>
                 </ul>
@@ -127,10 +138,14 @@ function EnterPassword() {
                 <p className="text-[#404040]">Remember Me</p>
               </div>
 
-              <button className="text-[#0F67B1] text-sm font-medium" onClick={()=>{  router.push("/LoginPage/forgetPassword");}}>
+              <button
+                className="text-[#0F67B1] text-sm font-medium"
+                onClick={() => {
+                  router.push("/LoginPage/forgetPassword");
+                }}
+              >
                 Forgot Password?
               </button>
-           
             </div>
             <button
               className={`w-[315px] ${
